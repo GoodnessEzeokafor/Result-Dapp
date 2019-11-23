@@ -5,23 +5,47 @@ import {RESULT_CONTRACT_ABI,RESULT_CONTRACT_ADDRESS } from "./config";
 
 
 export default class App  extends Component {
-  componentWillMount(){
-    this.loadBlockchainData()
+  async componentWillMount(){
+    await this.loadWeb3() 
+    await this.loadBlockchainData()
   }
+
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum)
+      await window.ethereum.enable()
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider)
+    }
+    else {
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+    }
+  }
+  
   async loadBlockchainData(){
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
+    // let web3 = new Web3(
+    // //   new Web3.providers.HttpProvider(
+    //     // "https://ropsten.infura.io/---your api key-----"
+    //     "kovan.infura.io/v3/741019b1a0e743fba0655aadd45d2733"
+    //   )
+    // )
+    
     const network = await web3.eth.net.getNetworkType()
     const accounts = await web3.eth.getAccounts()
     const resultList = new web3.eth.Contract(RESULT_CONTRACT_ABI,RESULT_CONTRACT_ADDRESS)
     
     console.log("Network:",network)
-    console.log("Accounts",accounts)
+    console.log("Accounts",accounts[0])
+    // console.log("Accounts", web3.eth.defaultAccount)
 
     // methods call
     const dapp_name = await resultList.methods.dapp_name().call() // call the public properties
     const resultCount = await resultList.methods.result_count().call() // call result Counts  
     // set state
-    this.setState({'account':accounts[0]}) // update the account state
+    // this.setState({'account':web3.eth.defaultAccount}) // update the account state
+    this.setState({'account':accounts[0]})
     this.setState({'results':resultList}) // update the result state 
     this.setState({dapp_name})
     this.setState({resultCount})

@@ -6,9 +6,25 @@ import {RESULT_CONTRACT_ABI,RESULT_CONTRACT_ADDRESS } from "./config";
 export default class Form extends Component {
 
 
-    componentWillMount(){
+  async componentWillMount(){
+        await this.loadWeb3() 
+        await this.loadBlockchainData()
         this.loadBlockchainData()
       }
+      async loadWeb3() {
+        if (window.ethereum) {
+          window.web3 = new Web3(window.ethereum)
+          await window.ethereum.enable()
+        }
+        else if (window.web3) {
+          window.web3 = new Web3(window.web3.currentProvider)
+        }
+        else {
+          window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+        }
+      }
+  
+      
       async loadBlockchainData(){
         const web3 = new Web3(Web3.givenProvider || 'http://localhost:8545')
         const network = await web3.eth.net.getNetworkType()
@@ -16,7 +32,7 @@ export default class Form extends Component {
         const resultList = new web3.eth.Contract(RESULT_CONTRACT_ABI,RESULT_CONTRACT_ADDRESS)
         
         console.log("Network:",network)
-        console.log("Accounts",accounts)
+        console.log("Accounts",accounts[0])
     
         // methods call
         const dapp_name = await resultList.methods.dapp_name().call() // call the public properties
