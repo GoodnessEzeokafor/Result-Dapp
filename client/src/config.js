@@ -1,7 +1,7 @@
 // export const RESULT_CONTRACT_ADDRESS = '0x65deCa63ae479cce3fb5917B9f8Ed6175603625D'
 
 // 0x2b80ac1300044cb975931c002088f71b16dcea51
-export const RESULT_CONTRACT_ADDRESS="0x2b80ac1300044cb975931c002088f71b16dcea51"
+export const RESULT_CONTRACT_ADDRESS="0x3a873bbbe4c2c3b63b640b3e2ba1618001bee9b9"
 export const RESULT_CONTRACT_ABI =  [
     {
       "anonymous": false,

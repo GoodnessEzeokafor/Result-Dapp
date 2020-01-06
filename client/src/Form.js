@@ -183,6 +183,7 @@ export default class Form extends Component {
                     type="text" 
                     className="form-control" 
                     id="course_name_one"
+                    placeholder="Course Title 2"
                 />
                 </div>
                 <div className="form-group col-md-2">
@@ -191,7 +192,7 @@ export default class Form extends Component {
                     type="text" 
                     className="form-control" 
                     id="grade_one"
-
+                    placeholder="5 point grading system e.g 4,3,5"
                 />
                 </div>
             </div>
@@ -203,6 +204,7 @@ export default class Form extends Component {
                     type="text" 
                     className="form-control" 
                     id="course_name_two"
+                    placeholder="Course Title"
                 />
                 </div>
                 <div className="form-group col-md-2">
@@ -211,6 +213,7 @@ export default class Form extends Component {
                     type="text" 
                     className="form-control" 
                     id="grade_two"
+                    placeholder="5 point grading system e.g 4,3,5"
 
                 />
                 </div>
