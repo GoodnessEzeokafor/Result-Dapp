@@ -40,6 +40,8 @@ export default class Result  extends Component {
 			<th scope="col">Grade For Course </th>
 			<th scope="col">Grade For Course 2 </th>
 			<th scope="col">View Result </th>
+			<th scope="col">Delete Result </th>
+			
 		</tr>	
 			
 	  </thead>
@@ -85,6 +87,34 @@ export default class Result  extends Component {
 					  :
 					  <button className="btn btn-danger" disabled> Not An Admin </button>
 					  }
+				</td>
+				<td>
+				{this.props.account === this.props.admin ? 
+					<button 
+							className="btn btn-danger"
+							id={result.id}
+												data-target="#exampleModal"
+												onClick={async (event) => {
+													// // const id = {result.id}
+													// alert(`Hello World ${result.id}`)
+													// this.getSingleResult()
+													const id= parseInt(event.target.id)
+													console.log(typeof id)
+													this.props.results.methods.deleteResult(id)
+													// .call().send()
+													.send({from:this.props.account})
+														.once('receipt',(receipt) => {
+															// this.setState({loading:false})
+															console.log(receipt)
+														})	 
+													event.persist();
+												}}
+							>Delete Result </button>
+					
+				:
+				<button className="btn btn-danger" disabled>Delete Result </button>
+				}
+
 				</td>
 				  </tr>
 						

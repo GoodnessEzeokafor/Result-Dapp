@@ -73,6 +73,9 @@ contract ResultDapp{
     );
 
   }
+   function deleteResult(uint _id) public only_election_authority{
+       delete results[_id]; 
+   }
 
   function getResult(uint _id)public view returns(
                                   uint id,

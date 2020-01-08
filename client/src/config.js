@@ -1,8 +1,10 @@
 // export const RESULT_CONTRACT_ADDRESS = '0x65deCa63ae479cce3fb5917B9f8Ed6175603625D'
 
 // 0x2b80ac1300044cb975931c002088f71b16dcea51
-export const RESULT_CONTRACT_ADDRESS="0xfe24650599efc87e52cf1d815cd7ffea2d652b38"
-export const RESULT_CONTRACT_ABI =  [
+// 0xfe24650599efc87e52cf1d815cd7ffea2d652b38
+// 0xcf4b54d6af2b62926090791f4f526251e77ee8ea
+export const RESULT_CONTRACT_ADDRESS="0xcf4b54d6af2b62926090791f4f526251e77ee8ea"
+export const RESULT_CONTRACT_ABI = [
   {
     "inputs": [],
     "payable": false,
@@ -211,6 +213,21 @@ export const RESULT_CONTRACT_ABI =  [
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "deleteResult",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": true,
     "inputs": [
       {
@@ -267,4 +284,3 @@ export const RESULT_CONTRACT_ABI =  [
     "type": "function"
   }
 ]
-
