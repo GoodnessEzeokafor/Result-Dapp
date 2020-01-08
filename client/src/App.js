@@ -43,13 +43,15 @@ export default class App  extends Component {
     // methods call
     const dapp_name = await resultList.methods.dapp_name().call() // call the public properties
     const resultCount = await resultList.methods.result_count().call() // call result Counts  
+    const admin = await resultList.methods.admin().call() // call result Counts  
+    
     // set state
     // this.setState({'account':web3.eth.defaultAccount}) // update the account state
     this.setState({'account':accounts[0]})
     this.setState({'results':resultList}) // update the result state 
     this.setState({dapp_name})
     this.setState({resultCount})
-
+    this.setState({admin})
     for(var i=1;i <= resultCount;i++){
       // const task = await todoList.methods.tasks(i).call()
       const result_list = await resultList.methods.results(i).call() // call result Counts
@@ -71,13 +73,14 @@ export default class App  extends Component {
   constructor(props){
     super(props);
     this.state = {
-      accounts:'',
+      account:'',
       resultCount:0, // result count 0
       results:[], // results list
       loading:true,
       dapp_name:'',
       get_result_list:[],
-      get_single_result:''
+      get_single_result:'',
+      admin:null
     }
   }
   render() { 
@@ -88,6 +91,8 @@ export default class App  extends Component {
         resultCount={this.state.resultCount}
         results= {this.state.results}
         get_result_list={this.state.get_result_list}
+        admin={this.state.admin}
+        account={this.state.account}
         />
       {/* 
       <Footer /> */}

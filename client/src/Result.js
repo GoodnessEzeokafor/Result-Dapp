@@ -56,29 +56,35 @@ export default class Result  extends Component {
 				<td id="grade_one">{result.grade_one}</td>
 				<td id="grade_two">{result.grade_two}</td>
 				<td>
-					<button id={result.id}
-						data-target="#exampleModal"
-						onClick={async (event) => {
-							// // const id = {result.id}
-							// alert(`Hello World ${result.id}`)
-							// this.getSingleResult()
-							const id= parseInt(event.target.id)
-							console.log(typeof id)
-							const single_result = await  this.getSingleResult(id)
-								 
-							console.log("Single:",single_result )
-							console.log(single_result['4'])
-							this.setState({single_result})
-							this.setState({addModalShow:true})
-							// this.setState({
-							// 	showModal:true
-							// })
-							// this.handleShowModal() // to show model
-							event.persist();
-						}}
-						className="btn btn-primary">
-						View Result
-					</button>
+					{/* {this.props.} */}
+					  {this.props.account === this.props.admin ? 
+												<button id={result.id}
+												data-target="#exampleModal"
+												onClick={async (event) => {
+													// // const id = {result.id}
+													// alert(`Hello World ${result.id}`)
+													// this.getSingleResult()
+													const id= parseInt(event.target.id)
+													console.log(typeof id)
+													const single_result = await  this.getSingleResult(id)
+														 
+													console.log("Single:",single_result )
+													console.log(single_result['4'])
+													this.setState({single_result})
+													this.setState({addModalShow:true})
+													// this.setState({
+													// 	showModal:true
+													// })
+													// this.handleShowModal() // to show model
+													event.persist();
+												}}
+												className="btn btn-primary">
+												View Result
+											</button>
+											  
+					  :
+					  <button className="btn btn-danger" disabled> Not An Admin </button>
+					  }
 				</td>
 				  </tr>
 						

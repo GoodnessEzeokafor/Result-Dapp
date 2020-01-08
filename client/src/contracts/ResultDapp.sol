@@ -5,7 +5,7 @@ contract ResultDapp{
     uint public result_count = 0; // default value for result count
     mapping(uint => Result) public results;
     string public dapp_name = "Result Processing Dapp"; // dapp name
-
+    address public admin;
     struct Result {
         uint id;
         string full_name; 
@@ -28,6 +28,18 @@ contract ResultDapp{
         string grade_two
    );
 
+
+    // Ensures only Admin can call a function
+    modifier only_election_authority() {
+        if (msg.sender != admin) revert();
+        _;
+    }
+ constructor() public {
+        // electionAuthority = 0x6415d68373647F99270E24eB145be4d6E0141Ab2;
+        admin = msg.sender;
+    }
+
+
   // create result
  function createResult(
             string memory _full_name,
@@ -37,7 +49,7 @@ contract ResultDapp{
             string memory _course_name_two,
             string memory _grade_one,
             string memory _grade_two
-            ) public{
+            ) public only_election_authority{
     result_count++;
     results[result_count] = Result(
                                 result_count,

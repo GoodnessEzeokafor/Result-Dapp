@@ -47,10 +47,14 @@ export default class Navbar extends Component {
                         <Result 
                             results={this.props.results}
                             get_result_list={this.props.get_result_list} 
+                            admin={this.props.admin}
+                            account={this.props.account}
                         />
                     </Route>
                     <Route path="/">
-                        <Home />
+                        <Home 
+                        admin={this.props.admin}
+                        account={this.props.account}/>
                     </Route>
         </Switch>
             </div>

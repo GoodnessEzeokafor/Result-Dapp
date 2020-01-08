@@ -8,7 +8,10 @@ export default class Content extends Component {
             <div className="container mt-5">
                 <div className="row">
                     <div className="col-md-12">
-                        <Form />
+                        <Form 
+                        account={this.props.account}
+                        admin={this.props.admin}
+                        />
                     </div>
                 </div>
             </div>

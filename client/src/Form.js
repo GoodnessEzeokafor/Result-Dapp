@@ -37,12 +37,14 @@ export default class Form extends Component {
         // methods call
         const dapp_name = await resultList.methods.dapp_name().call() // call the public properties
         const resultCount = await resultList.methods.result_count().call() // call result Counts
+        const admin = await resultList.methods.admin().call() // call result Counts
+        
         // set state
         this.setState({'accounts':accounts[0]}) // update the account state
         this.setState({'results':resultList}) // update the result state 
         this.setState({dapp_name})
         this.setState({resultCount})
-        
+        this.setState({admin})
         // console.log CONTRACT ADDRESS and 
         // console.log(RESULT_CONTRACT_ADDRESS)
         // console.log('------------------')
@@ -68,7 +70,8 @@ export default class Form extends Component {
             department:'',
             course_name:'',
             credit_unit:'',                
-        }
+        },
+        admin:''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         // this.handleFirstName = this.handleFirstName.bind(this);
@@ -219,11 +222,19 @@ export default class Form extends Component {
                 </div>
             </div>
             
-            
+            {this.state.accounts === this.state.admin ? 
+                        <button 
+                        type="submit" 
+                        className="btn btn-primary btn-block"
+                    >Submit</button>
+            :
             <button 
-                type="submit" 
-                className="btn btn-primary btn-block"
-            >Submit</button>
+                        type="submit" 
+                        className="btn btn-primary btn-block"
+                        disabled
+                    >Not An Admin</button>
+            }
+
             </form>
             </div>
         );
