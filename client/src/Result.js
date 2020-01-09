@@ -59,7 +59,6 @@ export default class Result  extends Component {
 				<td id="grade_two">{result.grade_two}</td>
 				<td>
 					{/* {this.props.} */}
-					  {this.props.account === this.props.admin ? 
 												<button id={result.id}
 												data-target="#exampleModal"
 												onClick={async (event) => {
@@ -83,10 +82,7 @@ export default class Result  extends Component {
 												className="btn btn-primary">
 												View Result
 											</button>
-											  
-					  :
-					  <button className="btn btn-danger" disabled> Not An Admin </button>
-					  }
+						
 				</td>
 				<td>
 				{this.props.account === this.props.admin ? 
