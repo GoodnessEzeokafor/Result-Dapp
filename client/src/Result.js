@@ -108,7 +108,7 @@ export default class Result  extends Component {
 							>Delete Result </button>
 					
 				:
-				<button className="btn btn-danger" disabled>Delete Result </button>
+				<span></span>
 				}
 
 				</td>

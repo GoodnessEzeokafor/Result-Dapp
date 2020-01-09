@@ -9,7 +9,7 @@ import {
 import About from './About'
 import Result from './Result'
 import Home  from './Home'
-
+import Con from "./Con"
 
 export default class Navbar extends Component {
     render() {
@@ -23,10 +23,15 @@ export default class Navbar extends Component {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                          <li className="nav-item">
+                        <li className="nav-item">
                             <Link to="/" className='nav-link'>Home</Link>
                           </li>
-
+                            {this.props.admin == this.props.account? 
+                                 <li className="nav-item">
+                                 <Link to="/add" className='nav-link'>Add</Link>
+                               </li>        
+                            :<li></li>}
+                         
                             <li className="nav-item">
                                 <Link to="/about" className='nav-link'>About</Link>
                             </li>
@@ -51,11 +56,20 @@ export default class Navbar extends Component {
                             account={this.props.account}
                         />
                     </Route>
+                    {this.props.admin === this.props.account? 
+                                        <Route path="/add">
+                                        <Home 
+                                        admin={this.props.admin}
+                                        account={this.props.account}/>
+                                    </Route>
+                
+                    :<span></span>}
                     <Route path="/">
-                        <Home 
+                        <Con 
                         admin={this.props.admin}
                         account={this.props.account}/>
                     </Route>
+                    
         </Switch>
             </div>
             </Router>
